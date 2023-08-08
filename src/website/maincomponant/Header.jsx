@@ -155,7 +155,7 @@ const Header = () => {
                 </Link>
 
                 <Dropdown show={showBrandMegaMenu} onMouseEnter={brandMouseEnter} onMouseLeave={brandMouseLeave}>
-                  <Dropdown.Menu className="mega-menu" style={{ height: 'auto', width: '1000px', marginLeft: '-220px' }}>
+                  <Dropdown.Menu className="mega-menu" style={{ height: 'auto', width: '1000px', marginLeft: '-20px' }}>
                     <div className="row">
                       {
                         brand.map((sub) => (
@@ -177,10 +177,10 @@ const Header = () => {
                         ))
                       }
 
-                      <h6 className='text-center'><Link to='/brand'>View More</Link></h6>
+                      
 
                     </div>
-
+                    <h6 className='text-center'><Link to='/brand'>View More</Link></h6>
                   </Dropdown.Menu>
                 </Dropdown>
               </li>
