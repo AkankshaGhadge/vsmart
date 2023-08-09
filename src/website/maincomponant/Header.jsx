@@ -151,11 +151,11 @@ const Header = () => {
               </li>
               <li className="navbar-item dropdown-megamenu">
                 <Link to="/" className="nav-item nav-link" onMouseEnter={brandMouseEnter} onMouseLeave={brandMouseLeave}>
-                  <a className='nav-item active' href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">brand</a>
+                 <li className='b'><a className='nav-item active' href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brand</a></li> 
                 </Link>
 
                 <Dropdown show={showBrandMegaMenu} onMouseEnter={brandMouseEnter} onMouseLeave={brandMouseLeave}>
-                  <Dropdown.Menu className="mega-menu" style={{ height: 'auto', width: '1000px', marginLeft: '-20px' }}>
+                  <Dropdown.Menu className="mega-menu" style={{ height: 'auto', width: '1000px', marginLeft: '-420px' }}>
                     <div className="row">
                       {
                         brand.map((sub) => (
