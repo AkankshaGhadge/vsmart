@@ -65,7 +65,6 @@ const Brand = () => {
 
 				</div>
 
-				<h6 className='text-center'>  <Link to='/brand'> <i className="ion-ios-eye" /> View More Brands</Link></h6>
 
 			</section>
 		</div>
