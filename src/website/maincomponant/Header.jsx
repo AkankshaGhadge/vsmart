@@ -129,7 +129,7 @@ const Header = () => {
                               <ul>
                                 {
                                   SubCate.filter((sub) => sub.subcategory_category_id === el.category_id).map((sub) => (
-                                    <li key={sub.subcategory_id}>{sub.subcategory_name}</li>
+                                   <Link to={`/product-shop/${el.category_id}/${sub.subcategory_id}`} ><li key={sub.subcategory_id}>{sub.subcategory_name}</li></Link>
                                   ))
                                 }
 
