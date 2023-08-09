@@ -9,6 +9,7 @@ import Login from './website/maincomponant/Login';
 import Rajister from './website/maincomponant/Rajister';
 import About from './website/maincomponant/About';
 import Brand from './website/maincomponant/Brand';
+import SubCatagory from './website/maincomponant/SubCatagory';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/ragister' element={<Rajister/>}/>
         <Route path='/about'element={<About/>}/>
         <Route path='/brand'element={<Brand/>}/>
+        <Route path='/product-shop/:cat_id/:sub_id'element={<SubCatagory/>}/>
       </Routes>
       </BrowserRouter> 
       
