@@ -10,6 +10,7 @@ import Rajister from './website/maincomponant/Rajister';
 import About from './website/maincomponant/About';
 import Brand from './website/maincomponant/Brand';
 import SubCatagory from './website/maincomponant/SubCatagory';
+import Banking from './website/maincomponant/Banking';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/about'element={<About/>}/>
         <Route path='/brand'element={<Brand/>}/>
         <Route path='/product-shop/:cat_id/:sub_id'element={<SubCatagory/>}/>
+        <Route path='/banking' element={<Banking/>}/>
       </Routes>
       </BrowserRouter> 
       

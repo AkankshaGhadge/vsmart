@@ -186,6 +186,7 @@ const Header = () => {
               </li>
               <li className="nav-item nav">
                 <Link to='/about'>About</Link></li>
+                <Link to='/banking'>   Banking Details</Link>
               <li className="nav-item"><a href="blog.html" className="nav-link">Blog</a></li>
               <Link className='text-center' to='/login'>Login</Link>
               <li className="nav-item"><a href="contact.html" className="nav-link">Login</a></li>

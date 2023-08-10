@@ -2,26 +2,71 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const Rajister = () => {
-    const [Name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [Mobile, setMobile] = useState('');
-    const [Address, setAddress] = useState('');
-    const [password, setPassword] = useState('');
-    const [cpassword, setcpassword] = useState('');
+    const[formData,setformData]= useState(
+        {
+           name:'',
+           email:'',
+           mob_no:'',
+           address:'',
+           password:'',
+           cpassword:''
 
+        }
+    );
+    console.log(formData)
+    const onInputchange=(e)=>{
+    setformData({...formData,[e.target.name]:e.target.value})
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Add your login logic here]
     }
+    // const onSubmit =(e)=>{
+
+    //     e.preventDefault();
+    //     fetch('https://vsmart.ajspire.com/api/userregister',{ method: 'POST', body: formData} ).then((res) => {
+    //         // setDisebale(0)
+    //       }).catch((error) => {
+    //         console.error("Error fetching data:", error);
+    //       });
+  
+    //   } 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        fetch('https://vsmart.ajspire.com/api/userregister', {
+          method: 'POST',
+          body: JSON.stringify(formData),  // Convert formData to JSON string
+          headers: {
+            'Content-Type': 'application/json',  // Specify content type as JSON
+            // Include other headers if needed
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // Handle response data here
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log("Error", error);
+          });
+      };
+    // const [Name, setName] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [Mobile, setMobile] = useState('');
+    // const [Address, setAddress] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [cpassword, setcpassword] = useState('');
+
+
+    // const handleEmailChange = (event) => {
+    //     setEmail(event.target.value);
+    // };
+
+    // const handlePasswordChange = (event) => {
+    //     setPassword(event.target.value);
+    // };
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     // Add your login logic here]
+    // }
     return (
         <div><div>
             <Link to='/ragister'></Link>
@@ -31,9 +76,9 @@ const Rajister = () => {
                 <img src="http://vsmart.ajspire.com/images/logo1.png" alt="Centered Image" class="img-fluid" />
             </div>
            
-            
+            <div className="login-form">
 
-                <form className="login-form" onSubmit={handleSubmit}>
+                {/* <form className="login-form" onSubmit={handleSubmit}> */}
                 <h4 className='text-center wel'>Join Now</h4>
                 <h6 className='text-center '>Setup A New Account In A Minute</h6>
 
@@ -49,24 +94,27 @@ const Rajister = () => {
                     <input
                         type="text"
                         id="email"
-                        value={Name}
-                        onChange={handleEmailChange}
+                        // value={name}
+                        name='name'
+                        onChange={(e)=>onInputchange(e)}
                         placeholder="Enter your Name"
                     />
                      <label htmlFor="email">Email:</label>
                     <input
                         type="email"
                         id="email"
-                        value={email}
-                        onChange={handleEmailChange}
+                        // value={email}
+                        name='email'
+                        onChange={(e)=>onInputchange(e)}
                         placeholder="Enter your email"
                     />
                      <label htmlFor="Number">Mobile No:</label>
                     <input
                         type="Number"
                         id="email"
-                        value={Mobile}
-                        onChange={handleEmailChange}
+                        name='mob_no'
+                        // value={Mobile}
+                        onChange={(e)=>onInputchange(e)}
                         placeholder="Enter your Mobile No"
                     />
                     
@@ -74,8 +122,9 @@ const Rajister = () => {
                     <input
                         type="text"
                         id="Address"
-                        value={Address}
-                        onChange={handleEmailChange}
+                        name='address'
+                        // value={Address}
+                        onChange={(e)=>onInputchange(e)}
                         placeholder="Enter your Address"
                     />
 
@@ -83,29 +132,32 @@ const Rajister = () => {
                     <input
                         type="password"
                         id="password"
-                        value={password}
-                        onChange={handlePasswordChange}
+                        name='password'
+                        // value={password}
+                        onChange={(e)=>onInputchange(e)}
                         placeholder="Enter your password"
                     />
                   
                      <label htmlFor="password"> Confirm Password:</label>
                     <input
                         type="password"
-                        id="password"
-                        value={cpassword}
-                        onChange={handlePasswordChange}
+                        id="cpassword"
+                        name='cpassword'
+                        // value={cpassword}
+                        onChange={(e)=>onInputchange(e)}
                         placeholder="Enter your Confirm password"
                     />
-                     <h6> <input type="checkbox"/ >  Accept all the <Link>Terms & Conditions</Link></h6>
-                    <button type="submit">REGISTER</button>
+                     <h6> <input type="checkbox"/>  Accept all the <Link>Terms & Conditions</Link></h6>
+                    <button type="submit" onClick={(e)=>onSubmit(e)}>REGISTER</button>
                    
                     </div>
                     </div>
-                </form>
+                    </div>
+                {/* </form> */}
 
            
 
-            );
+                 
 
 
         </div></div>
