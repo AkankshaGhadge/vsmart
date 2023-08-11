@@ -5,22 +5,46 @@ import { Link } from 'react-router-dom';
 
 
 const Login = () => {
+    const[formData,setformData]= useState(
+        {
+         
+           email:'',
+           
+           password:'',
+           
+device_name:'AK'
+        }
+    );
+    const onInputchange=(e)=>{
+        setformData({...formData,[e.target.name]:e.target.value})
+    
+        }
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+        const onSubmit = (e) => {
+            e.preventDefault();
+            fetch('https://vsmart.ajspire.com/api/user/login', {
+                method: 'POST',
+                body: JSON.stringify(formData),  // Convert formData to JSON string
+                headers: {
+                    'Content-Type': 'application/json',  // Specify content type as JSON
+                    // Include other headers if needed
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    // Handle response data here
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.log("Error", error);
+                });
+        };
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
+    
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
+    
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Add your login logic here
-    };
+    
     return (
         <div>
             <Link to='/login'></Link>
@@ -31,26 +55,24 @@ const Login = () => {
             </div>
        
             
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="login-form">
                 <label htmlFor="email">Email:</label>
                 <input
                     type="text"
-                    id="email"
-                    value={email}
-                    onChange={handleEmailChange}
+                    name='email'
+                    onChange={onInputchange}
                     placeholder="Enter your email"
                 />
 
                 <label htmlFor="password">Password:</label>
                 <input
                     type="password"
-                    id="password"
-                    value={password}
-                    onChange={handlePasswordChange}
+                    name='password'
+                    onChange={onInputchange}
                     placeholder="Enter your password"
                 />
 
-                <button type="submit">Login</button>
+                <button type="submit" onClick={(e) => onSubmit(e)}>Login</button>
                 <h6 className='text-center '>Forgot Your Password? <Link>Reset Here</Link></h6>
             <h6 className='text-center '> Don't Have Any Account?<Link to='/ragister'>Register Here</Link></h6>
 
@@ -58,7 +80,7 @@ const Login = () => {
            
 
             
-            );
+            
 
         </div>
     )
