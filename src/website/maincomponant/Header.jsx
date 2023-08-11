@@ -34,6 +34,14 @@ const Header = () => {
   const brandMouseLeave = () => {
     setShowBrandMegaMenu(false);
   };
+  const [showCartMegaMenu, setShowCartMegaMenu] = useState(false);
+
+  const CartMouseclick = () => {
+    setShowCartMegaMenu(true);
+  };
+  const CartMouseofclick = () => {
+    setShowCartMegaMenu(false);
+  };
   const Getcate = () => {
     fetch('https://vsmart.ajspire.com/api/categories').then(
       response => {
@@ -129,7 +137,7 @@ const Header = () => {
                               <ul>
                                 {
                                   SubCate.filter((sub) => sub.subcategory_category_id === el.category_id).map((sub) => (
-                                   <Link to={`/product-shop/${el.category_id}/${sub.subcategory_id}`} ><li key={sub.subcategory_id}>{sub.subcategory_name}</li></Link>
+                                    <Link to={`/product-shop/${el.category_id}/${sub.subcategory_id}`} ><li key={sub.subcategory_id}>{sub.subcategory_name}</li></Link>
                                   ))
                                 }
 
@@ -151,7 +159,7 @@ const Header = () => {
               </li>
               <li className="navbar-item dropdown-megamenu">
                 <Link to="/" className="nav-item nav-link" onMouseEnter={brandMouseEnter} onMouseLeave={brandMouseLeave}>
-                 <li className='b'><a className='nav-item active' href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brand</a></li> 
+                  <li className='b'><a className='nav-item active' href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brand</a></li>
                 </Link>
 
                 <Dropdown show={showBrandMegaMenu} onMouseEnter={brandMouseEnter} onMouseLeave={brandMouseLeave}>
@@ -177,7 +185,7 @@ const Header = () => {
                         ))
                       }
 
-                      
+
 
                     </div>
                     <h6 className='text-center'><Link to='/brand'>View More</Link></h6>
@@ -186,11 +194,83 @@ const Header = () => {
               </li>
               <li className="nav-item nav">
                 <Link to='/about'>About</Link></li>
-                <Link to='/banking'>   Banking Details</Link>
+              <Link to='/banking'>   Banking Details</Link>
               <li className="nav-item"><a href="blog.html" className="nav-link">Blog</a></li>
               <Link className='text-center' to='/login'>Login</Link>
               <li className="nav-item"><a href="contact.html" className="nav-link">Login</a></li>
+              <li className="navbar-item dropdown-megamenu">
+                <Link to="/" className="nav-item nav-link" onClick={CartMouseclick}>
+                  <li className='b'><a className='nav-item active' href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span className="icon-shopping_cart" />Cart [0]</a></li>
+                </Link>
+
+                <Dropdown show={showCartMegaMenu} alignRight onClick={CartMouseclick} onMouseLeave={CartMouseofclick}>
+                  <Dropdown.Menu className="mega-menu" style={{ height: 'auto', width: 'auto', marginLeft: '-620px'}}  >
+                    <div className="row">
+                     
+
+
+                          <div className="col-md-3">
+                            <div className="megamenu-wrap">
+
+                              <ul className="megamenu-list sub">
+                                <table class="table border">
+                                  <thead class="thead-primary border ">
+
+                                    <tr class="text-center border">
+                                      
+                                      <th>product image</th>
+                                      <th>Product name</th>
+                                      <th>Price</th>
+                                      <th>Quantity</th>
+                                      <th>Total</th>
+                                    </tr>
+                                  </thead >
+                                   <tbody className='border'>
+                                   <tr>
+                                    <td>
+                                    <a href="#"><span className="ion-ios-close" /></a>
+                                    <div className="img" style={{ backgroundImage: 'url(images/product-3.jpg)' }} />
+                                    </td>
+                                    
+                                   
+                                    <td>
+                                    <h3>Bell Pepper</h3>
+                                    </td>
+                                   <td>
+                                    $4.90
+                                    </td>
+                                    <td>
+                                    <div className="input-group mb-3">
+                                      <input type="text" name="quantity" className="quantity form-control input-number" defaultValue={1} min={1} max={100} />
+                                     
+                                    </div>
+                                      
+                                    </td>
+                                    <td>
+                                    $4.90
+                                    </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
+                              </ul>
+                            </div>
+                          </div>
+                       
+
+
+
+                    </div>
+                    <h6 className='text-center'><Link to='/brand'>View More</Link></h6>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </li>
               <li className="nav-item cta cta-colored"><a href="cart.html" className="nav-link"><span className="icon-shopping_cart" />[0]</a></li>
+              <li className="nav-item cta cta-colored"><a href="cart.html" className="nav-link"><span className="ion-ios-heart" /> [0]</a></li>
+
+
             </ul>
           </div>
         </div>
