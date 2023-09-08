@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
-import Header from './Header';
 import Featured from './Featured';
+import { Button } from 'bootstrap';
+import Authuser from '../Authantication/Authuser';
 
 const Index = () => {
 
@@ -12,6 +12,9 @@ const Index = () => {
     const [Slider, SetSlider] = useState([]);
     const [Categories, Setcategories] = useState([]);
     const [Brand, SetBrand] = useState([]);
+    const [Cart,SetCart]= useState([]);
+    const { http, token } = Authuser();
+
 
     const Getbrand = () => {
         fetch('https://vsmart.ajspire.com/api/brands').then(
@@ -74,9 +77,31 @@ const Index = () => {
         Getcategories();
         Getbrand();
     }, []);
+    const addTocart = (product_id) => {
+        http.get(`/add-to-cart/${product_id}`)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error adding product to cart', error);
+            });
+
+
+    } 
+    const addToWish = (product_id) => {
+        http.get(`/add-to-wishlist/${product_id}`)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error adding product to cart', error);
+            });
+
+
+    }
+   
     return (
         <div>
-            <Header />
             <Link to='/index'></Link>
             <Carousel>
                 {
@@ -136,59 +161,7 @@ const Index = () => {
             </div>
             <Featured />
 
-            {/* <section className="ftco-section">
-                <div className="container">
-                    <div className="row justify-content-center mb-3 pb-3">
-                        <div className="col-md-12 heading-section text-center ">
-                            
-                            <h2 className="mb">Featured Products</h2>
-                        </div>
-                    </div>
-                </div>
-                <div className="container">
-                    <div className="row">
-                        {
-                            Product.slice(0, 20).map((products) =>
-                            (
-
-
-
-                                <div className="col-md-6 col-lg-3  ">
-                                    <div className="product">
-                                        <a href="#" className="img-prod"><img className="img-fluid card" src={products.product_image} alt="Colorlib Template" />
-                                            <span className="status">&#8377;{products.mrp_price - products.sale_price} OFF</span>
-                                            <div className="overlay" />
-                                        </a>
-                                        <div className="text py-3 pb-4 px-3 text-center">
-                                            <h3><a href="#">{products.english_name}</a></h3>
-                                            <div className="d-flex">
-                                                <div className="pricing">
-                                                    <p className="price"><span className="mr-2 price-dc">{products.mrp_price}</span><span className="price-sale">{products.sale_price}</span></p>
-                                                </div>
-                                            </div>
-                                            <div className="bottom-area d-flex px-3">
-                                                <div className="m-auto d-flex">
-                                                    <a href="#" className="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                        <span><i className="ion-ios-menu" /></span>
-                                                    </a>
-                                                    <a href="#" className="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                        <span><i className="ion-ios-cart" /></span>
-                                                    </a>
-                                                    <a href="#" className="heart d-flex justify-content-center align-items-center ">
-                                                        <span><i className="ion-ios-heart" /></span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                            )
-                        }
-                    </div>
-                </div>
-                <h6 className='text-center'>  <Link to='/product'> <i className="ion-ios-eye" />View More</Link></h6>
-            </section> */}
+           
 
 
 
@@ -198,7 +171,7 @@ const Index = () => {
                         <div className="col-md-12 heading-section text-center ">
                             <span className="subheading">Featured Products</span>
                             <h2 className="mb-4">Our Products</h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                            <p>A complete place for the complete shopping </p>
                         </div>
                     </div>
                 </div>
@@ -208,37 +181,47 @@ const Index = () => {
                             Product.slice(0, 20).map((products) =>
                             (
 
-
-
                                 <div className="col-md-6 col-lg-3  ">
-                                    <div className="product">
-                                        <a href="#" className="img-prod"><img className="img-fluid card" src={products.product_image} alt="Colorlib Template" />
-                                            <span className="status">&#8377;{products.mrp_price - products.sale_price} OFF</span>
-                                            <div className="overlay" />
-                                        </a>
-                                        <div className="text py-3 pb-4 px-3 text-center">
-                                            <h3><a href="#">{products.english_name}</a></h3>
-                                            <div className="d-flex">
-                                                <div className="pricing">
-                                                    <p className="price"><span className="mr-2 price-dc">{products.mrp_price}</span><span className="price-sale">{products.sale_price}</span></p>
-                                                </div>
+                                <div className="product">
+                                    <a href="#" className="img-prod"><img className="img-fluid card" src={products.product_image} alt="Colorlib Template" />
+                                        <span className="status">&#8377;{products.mrp_price - products.sale_price} OFF</span>
+                                        <div className="overlay" />
+                                    </a>
+                                    <div className="text py-3 pb-4 px-3 text-center">
+                                        <h3><a href="#">{products.english_name}</a></h3>
+                                        <div className="d-flex">
+                                            <div className="pricing">
+                                                <p className="price"><span className="mr-2 price-dc">{products.mrp_price}</span><span className="price-sale">{products.sale_price}</span></p>
                                             </div>
-                                            <div className="bottom-area d-flex px-3">
-                                                <div className="m-auto d-flex">
-                                                    <a href="#" className="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                                        <span><i className="ion-ios-menu" /></span>
-                                                    </a>
-                                                    <a href="#" className="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                        <span><i className="ion-ios-cart" /></span>
-                                                    </a>
-                                                    <a href="#" className="heart d-flex justify-content-center align-items-center ">
-                                                        <span><i className="ion-ios-heart" /></span>
-                                                    </a>
-                                                </div>
+                                        </div>
+                                        <div className="bottom-area d-flex px-3">
+                                            <div className="m-auto d-flex">
+                                                <a href="#" className="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                    <span><i className="ion-ios-menu" /></span>
+                                                </a>
+                                                {token ? (<a className="buy-now d-flex justify-content-center align-items-center mx-1 ion-ios-cart" onClick={() => addTocart(products.product_id)}>
+                                                    {/* <span><i className= /></span> */}
+
+                                                </a>) : <Link to={'/login'} />
+
+                                                }
+                                              {token ? (<a className="buy-now d-flex justify-content-center align-items-center mx-1 ion-ios-heart" onClick={() => addToWish(products.product_id)}>
+                                                    {/* <span><i className= /></span> */}
+
+                                                </a>) : <Link to={'/login'} />
+
+                                                }
+
+                                                {/* <a href="#" className="heart d-flex justify-content-center align-items-center ">
+                                                    <span><i className="ion-ios-heart" /></span>
+                                                </a> */}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                               
                             )
                             )
                         }
@@ -299,7 +282,6 @@ const Index = () => {
 
             </section>
 
-            <Footer />
         </div >
 
     )

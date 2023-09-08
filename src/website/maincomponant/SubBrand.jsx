@@ -1,64 +1,61 @@
-import React, { useEffect, useState } from 'react'
-import { Carousel } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom'
-import Header from './Header';
+import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Authuser from '../Authantication/Authuser';
 
-
-const SubCatagory = () => {
-  const { http, token } = Authuser();
-
-  let { cat_id, sub_id } = useParams();
+const SubBrand = () => {
+    let {brand_id } = useParams();
   // for product
-  const [Category, setCategory] = useState([]);
-  //for banner
-  const [category_, setCategory_] = useState([]);
-  //for subbanner
-  const [subcategory_, subCategory_] = useState([]);
+//   const [Category, setCategory] = useState([]);
+//   //for banner
+//   const [category_, setCategory_] = useState([]);
+//   //for subbanner
+//   const [subcategory_, subCategory_] = useState([]);
   // scroll menu
   const [Cat, setCate] = useState([]);
   const [brand, setbrand] = useState([]);
+  const [brands_,setbrands_] = useState([]);
+  const { http, token } = Authuser();
+
   //Slider after banner
-  const [Sub, setSub] = useState([]);
+//   const [Sub, setSub] = useState([]);
   //count for brand and categoryies
   const [Count, setCount] = useState([]);
   const [Count1, setCount1] = useState([]);
   console.log(Count1);
+  const getBrandData =()=>{
 
-  const getCategoryData = () => {
-    // console.log();
-    try {
-      fetch(`https://vsmart.ajspire.com/api/product-shop/${cat_id}/${sub_id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          // console.log(data);
-          setCategory(data.category.data);
-          setCategory_(data.category_);
-          subCategory_(data.subcategory_);
-          setCate(data.cat);
-          setbrand(data.brand);
-          setSub(data.sub);
-          setCount(data.count);
-          setCount1(data.count1);
-        })
+  
+  try {
+    fetch(`https://vsmart.ajspire.com/api/product-shop/${brand_id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        // setCategory(data.category.data);
+        // setCategory_(data.category_);
+        // subCategory_(data.subcategory_);
+        setCate(data.cat);
+        setbrand(data.brand);
+        // setSub(data.sub);
+        setCount(data.count);
+        setCount1(data.count1);
+        setbrands_(data.brands_)
+      })
 
 
 
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
 
-    } catch (error) {
-
-    }
-
+  } catch (error) {
 
   }
+}
   useEffect(() => {
-    getCategoryData();
-  }, [cat_id, sub_id]);
-
-
+    getBrandData();
+  },[brand_id]);
   const addTocart = (product_id) => {
     http.get(`/add-to-cart/${product_id}`)
         .then((response) => {
@@ -83,53 +80,26 @@ const addToWish = (product_id) => {
 }
 
 
+  
+
   return (
+    
     <div>
-      {/* <Header /> */}
+      
       <div style={{ background: `url(https://midwestcommunity.org/wp-content/uploads/2018/02/Groceries-ThinkstockPhotos-836782690.jpg)`, backgroundSize: 'cover', height: '475px' }}>
         <div className='heading '>
 
           <div className="container" style={{ paddingBottom: "150px", color: "" }}>
-          <h2 style={{ color: "white"}}>{category_.category_name}</h2>
+          
             <h4 style={{ color: "white"}} >
               <Link to="/" style={{ color: "white" }}><i className="ion-ios-home" />Home/</Link>
-             {subcategory_.subcategory_name} 
+             {brands_.brand_name} 
             </h4>
           </div>
 
         </div>
       </div>
-      <section className="ftco-section ftco-category ftco-no-pt">
-        <div className="container">
-          <Carousel>
-            {/* Group categories in rows of 3 */}
-            {Sub.map((Cate, index) => {
-              if (index % 3 === 0) {
-                const categorySlice = Sub.slice(index, index + 3);
-                return (
-                  <Carousel.Item key={index}>
-                    <div className="row">
-                      {categorySlice.map((category, subIndex) => (
-                        <div className="col-md-4" key={subIndex}>
-                          <div className="category-wrap  img mb-4 d-flex align-items-end" >
-                            <img className='img' src={category.subcategory_image} alt={category.subcategory_name} srcset="" />
-                            <div className="text px-3 py-1">
-                              <h2 className="mb-0"><a href="#">{category.subcategory_name}</a></h2>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </Carousel.Item>
-                );
-              } else {
-                return null; // If not the start of a new row, return null (no carousel item)
-              }
-            })}
-          </Carousel>
-
-        </div>
-      </section>
+     
       <div class="container ">
         <div class="row">
           <div class="col-lg-3">
@@ -166,7 +136,7 @@ const addToWish = (product_id) => {
             <div className="container">
               <div className="row">
                 {
-                  Category.map((products) =>
+                  brand.map((products) =>
                   (
                     <div className='col-lg-3'>
                     
@@ -176,7 +146,7 @@ const addToWish = (product_id) => {
                           <div className="overlay" />
                         </a>
                         <div className="text py-3 pb-4 px-3 text-center">
-                          <h3><a href="#">{products.english_name}</a></h3>
+                          <h3><a href="#">{products.brand_name}</a></h3>
                           <div className="d-flex">
                             <div className="pricing">
                               <p className="price"><span className="mr-2 price-dc">{products.mrp_price}</span><span className="price-sale">{products.sale_price}</span></p>
@@ -216,4 +186,4 @@ const addToWish = (product_id) => {
   )
 }
 
-export default SubCatagory
+export default SubBrand

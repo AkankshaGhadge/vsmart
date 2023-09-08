@@ -5,10 +5,10 @@ import Footer from '../maincomponant/Footer'
 const Master = ({Rcf}) => {
   return (
     <div>
-      
+      <Header/>
       <Rcf></Rcf>
       
-
+<Footer/>
     </div>
   )
 }

@@ -177,3 +177,49 @@
 {
   border: #080808;
 }
+.logo{
+  margin-left: -150px;
+}
+/* CSS for the table container */
+/* CSS for the table container */
+.cart-table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-width: 400px; /* Adjust the max-width as needed */
+  background-color: #fff; /* Background color for the table */
+  border: 1px solid #ccc; /* Border for the table */
+  padding: 10px;
+}
+
+/* CSS for each table row (cart item) */
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  border: 1px solid #ccc; /* Border for each item */
+  padding: 5px; /* Adjust padding as needed */
+}
+
+/* CSS for the product image */
+.cart-image {
+  max-width: 100px; /* Adjust the image size as needed */
+  margin-right: 10px;
+ 
+}
+
+/* CSS for the product name */
+.cart-product-name {
+  margin: 0;
+}
+.btn{
+  background-color: #9ae840; /* Green color */
+  color: white; /* Text color */
+  border: white; /* Remove border */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 50px; /* Rounded corners */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  font-size: 12px; /* Font size */
+}
+
+

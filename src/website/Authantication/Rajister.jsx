@@ -61,7 +61,7 @@ const Rajister = () => {
                             <img src="https://vsmart.ajspire.com/images/images.jpg" alt="Centered Image" class="img-fluid" />
                         </div>
                     </div>
-                    <div className='col-lg-6'>C
+                    <div className='col-lg-6'>
 
                         <label htmlFor="name">Name:</label>
                         <input type='text'

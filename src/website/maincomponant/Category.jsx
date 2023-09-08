@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Header from './Header'
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
 
 const Category = () => {
     const [Categories, Setcategories] = useState([]);
@@ -24,7 +22,7 @@ const Category = () => {
     }, []);
     return (
         <div>
-            <Header></Header>
+            
             <h1 className='text-center'> Categories</h1>
             <Link to='/categories'></Link>
 
@@ -58,7 +56,6 @@ const Category = () => {
             </section >
 
 
-            <Footer />
 
         </div>
     )

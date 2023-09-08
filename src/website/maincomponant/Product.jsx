@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
+import { Link, useParams } from 'react-router-dom';
+import Authuser from '../Authantication/Authuser';
+import { Button } from 'react-bootstrap';
 
 const Product = () => {
     const [Product, Setproduct] = useState([]);
+    const { http, token } = Authuser();
+
     const GetProduct = () => {
         fetch('https://vsmart.ajspire.com/api/products').then(
             response => {
@@ -19,14 +21,36 @@ const Product = () => {
 
 
     }
+    const addTocart = (product_id) => {
+        http.get(`/add-to-cart/${product_id}`)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error adding product to cart', error);
+            });
+
+
+    }
     useEffect(() => {
         GetProduct();
 
     }, []);
+    const addToWish = (product_id) => {
+        http.get(`/add-to-wishlist/${product_id}`)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Error adding product to cart', error);
+            });
+
+
+    }
+   
     return (
         <>
-            <Header />
-            <Link to='/product'></Link>
+
             <section className="ftco-section">
                 <div className="container">
                     <div className="row justify-content-center mb-3 pb-3">
@@ -63,12 +87,22 @@ const Product = () => {
                                                     <a href="#" className="add-to-cart d-flex justify-content-center align-items-center text-center">
                                                         <span><i className="ion-ios-menu" /></span>
                                                     </a>
-                                                    <a href="#" className="buy-now d-flex justify-content-center align-items-center mx-1">
-                                                        <span><i className="ion-ios-cart" /></span>
-                                                    </a>
-                                                    <a href="#" className="heart d-flex justify-content-center align-items-center ">
+                                                    {token ? (<Button className="buy-now d-flex justify-content-center align-items-center mx-1 ion-ios-cart" onClick={() => addTocart(products.product_id)}>
+                                                        {/* <span><i className= /></span> */}
+
+                                                    </Button>) : <Link to={'/login'} />
+
+                                                    }
+                                                  {token ? (<Button className="buy-now d-flex justify-content-center align-items-center mx-1 ion-ios-heart" onClick={() => addToWish(products.product_id)}>
+                                                        {/* <span><i className= /></span> */}
+
+                                                    </Button>) : <Link to={'/login'} />
+
+                                                    }
+
+                                                    {/* <a href="#" className="heart d-flex justify-content-center align-items-center ">
                                                         <span><i className="ion-ios-heart" /></span>
-                                                    </a>
+                                                    </a> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +114,6 @@ const Product = () => {
                     </div>
                 </div>
             </section>
-            <Footer />
         </>
     )
 }

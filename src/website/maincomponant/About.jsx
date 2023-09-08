@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Header from './Header'
-import Footer from './Footer'
+
 
 const About = () => {
   return (
     <div>
       <Link to='/about'></Link>
-      <Header />
+     
 
 
       <div style={{ background: `url(https://shopiclix.com/adminpanel/upload/slider/1679574169494.png)`, backgroundSize: 'cover', height: '475px' }}>
@@ -64,7 +63,7 @@ const About = () => {
       </div>
 
 
-      <Footer />
+    
     </div>
   )
 }

@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Header from './Header'
 
 const Banking = () => {
     return (
         <div className='col-lg-12 col-md-6 col-sm-4'> 
-            <Header/>
+            
             <div style={{ background: `url(https://static.vecteezy.com/system/resources/previews/022/277/376/original/banner-with-vegetables-copy-space-background-generative-ai-free-photo.jpeg)`, backgroundSize: 'cover', height: '475px' }}>
                 <div className='heading'>
                     <h1>BANKING DETAILS</h1>
