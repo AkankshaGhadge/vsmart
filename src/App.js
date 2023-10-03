@@ -18,6 +18,7 @@ import ViewCart from './website/maincomponant/ViewCart';
 import Wishlist from './website/maincomponant/Wishlist';
 import Checkout from './website/maincomponant/Checkout';
 import Profile from './website/Authantication/Profile';
+import Myorder from './website/maincomponant/Myorder';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path='/wishlist'element={<Master Rcf={Wishlist}/>}/>
         <Route path='/checkout'element={<Master Rcf={Checkout}/>}/>
         <Route path='/Profile'element={<Master Rcf={Profile}/>}/>
+        <Route path='/myorder'element={<Master Rcf={Myorder}/>}/>
 
 
       </Routes> 

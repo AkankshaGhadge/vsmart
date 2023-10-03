@@ -99,6 +99,7 @@ const Product = () => {
                                                     </Button>) : <Link to={'/login'} />
 
                                                     }
+                                                     
 
                                                     {/* <a href="#" className="heart d-flex justify-content-center align-items-center ">
                                                         <span><i className="ion-ios-heart" /></span>

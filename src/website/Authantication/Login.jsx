@@ -14,6 +14,7 @@ const Login = () => {
     useEffect(() => {
    
          if(token !=null){
+           
             navigate('/');
          }
          window.scrollTo({
@@ -41,6 +42,7 @@ const Login = () => {
             http.post("/user/login",formData).then((responce)=>{
                console.log(responce.data)
                if(responce.data.token){
+                alert('login succsessfully')
                 settoken(responce.data.user_data ,responce.data.token);
                 navigate ('/');
                }else{

@@ -222,4 +222,178 @@
   font-size: 12px; /* Font size */
 }
 
+/* You can create a separate CSS file (e.g., Profile.css) and import it in your component */
+
+/* Profile card styles */
+.account-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.account-title h4 {
+  font-size: 24px;
+}
+
+.account-title button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.account-title button:hover {
+  background-color: #0056b3;
+}
+
+/* Profile image */
+.profile-image img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/* Form group styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Profile buttons */
+.profile-btn a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.profile-btn a:hover {
+  text-decoration: underline;
+}
+
+/* Profile card styles */
+.profile-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f8f8f8;
+  margin-bottom: 10px;
+}
+
+.profile-card h6 {
+  font-size: 16px;
+  margin: 0;
+}
+/* Add this CSS to a separate .css file */
+
+/* Style the background gradient */
+.gradient-custom {
+  background: linear-gradient(to bottom, #ffffff, #eee);
+  min-height: 100vh;
+}
+
+/* Style the card */
+.custom-card {
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the card header */
+.card-header {
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+  padding: 1.5rem;
+}
+
+/* Style the text inside the card header */
+.card-header h5 {
+  color: #a8729a;
+}
+
+/* Style the card body */
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Style the receipt card */
+.receipt-card {
+  border: none;
+  box-shadow: none;
+  margin-bottom: 1rem;
+}
+
+/* Style the progress bar */
+.progress-bar {
+  height: 6px;
+  border-radius: 16px;
+}
+
+/* Style the progress bar fill color */
+.progress-bar-fill {
+  background-color: #a8729a;
+}
+
+/* Style the order status labels */
+.order-status-labels {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+/* Style the order details section */
+.order-details {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+}
+
+/* Style the invoice number and date section */
+.invoice-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style the footer */
+.card-footer {
+  background-color: #a8729a;
+  border-radius: 0 0 10px 10px;
+  padding: 1.5rem;
+}
+
+/* Style the total paid text */
+.total-paid {
+  color: #ffffff;
+}
+
+/* Style the total amount */
+.total-amount {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+
+
+/* You can define more specific styles for different sections if needed */
 

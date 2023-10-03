@@ -42,8 +42,6 @@ const SubCatagory = () => {
           setCount1(data.count1);
         })
 
-
-
         .catch((error) => {
           console.error("Error fetching data:", error);
         });

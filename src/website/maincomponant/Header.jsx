@@ -16,9 +16,11 @@ const Header = () => {
   const [brand, setbrand] = useState([]);
   const [cartItems, SetCartItems] = useState([])
   const [cartCount, SetCartCount] = useState([])
-   const [WishItems, SetWishItems] = useState([])
-   const [WishCount, SetWishCount] = useState([])
-  const [search, setsearch] = useState('');
+  const [WishItems, SetWishItems] = useState([])
+  const [WishCount, SetWishCount] = useState([])
+  const [cartId, setCartId] = useState([])
+
+    const [search, setsearch] = useState('');
   const [params, setparams] = useSearchParams();
 
   const handleInputchange = (e) => {
@@ -93,7 +95,8 @@ const Header = () => {
 
     )
   }
-   
+
+
   useEffect(() => {
     Getcate();
     Getbrand();
@@ -106,7 +109,7 @@ const Header = () => {
       // getWishproduct();
 
     }
-  }, [token])
+  }, [token], cartId)
   const getWishproduct = () => {
     http.get(`/get-wishlist`).then(
       (res) => {
@@ -123,7 +126,15 @@ const Header = () => {
 
     }
   }, [token])
-
+  const RemovefromCart = (cart_id) => {
+    http.get(`/remove-to-cart/${cart_id}`).then((response) => {
+      console.log(response.data);
+      setCartId(cart_id)
+      alert('product remove from Cart successfully')
+    }).catch((error) => {
+      console.error('Error removing product to cart', error);
+    })
+  }
 
 
 
@@ -144,6 +155,12 @@ const Header = () => {
                   <div className="icon mr-2 d-flex justify-content-center align-items-center"><span className="icon-paper-plane" /></div>
                   <span className="text">youremail@email.com</span>
                 </div>
+                
+                <div className="col-md pr-4 d-flex topper align-items-center">
+                  <div className="icon mr-2 d-flex justify-content-center align-items-center"><span className="icon-shopping-cart" /></div>
+                  <a className="text" href='myorder'> 
+                   Orders</a>
+                </div>
                 <div className="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
                   <a className="text">Contact Us</a>
                 </div>
@@ -157,7 +174,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div className="container">
 
-          <a className="navbar-brand logo" href="index.html">
+          <a className="navbar-brand logo" href="/">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
               aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="oi oi-menu"></span> Menu
@@ -269,7 +286,8 @@ const Header = () => {
                 <Link to='/shop'>Shop</Link></li>
               <li className="nav-item nav">
                 <Link to='/about'>About</Link></li>
-               <Link to='/banking'> Banking</Link>
+              <li> <Link to='/banking'> Banking</Link></li>
+
               {/* <li className="nav-item"><a href="blog.html" className="nav-link">Blog</a></li> */}
               {/* <Link className='text-center' to='/login'>Login</Link> */}
               {token ? (
@@ -290,10 +308,11 @@ const Header = () => {
                 </Link>
 
                 <Dropdown show={showCartMegaMenu} alignRight onClick={CartMouseclick} onMouseLeave={CartMouseofclick}>
-                  <Dropdown.Menu className="mega-menu cart-table" style={{ height: 'auto', width: 'auto', marginLeft: '-10px' }}>
+                  <Dropdown.Menu className="mega-menu" style={{ height: 'auto', width: 'auto', marginLeft: '-10px' }}>
                     <div className='row' style={{ height: '300px', width: 'auto', marginLeft: '-10px', overflowY: 'scroll' }}>
                       {cartItems.map((el) => (
                         <div className="cart-item">
+                          <button className='btn btn-danger' onClick={() => RemovefromCart(el.cart_id)}> <span className="icon-trash"></span></button>
                           <img src={`https://vsmart.ajspire.com/uploads/product_image/${el.product_image}`} alt="" className="cart-image" />
                           <p className="cart-product-name" style={{ textAlign: "center" }}>{el.english_name}</p>
                         </div>
@@ -303,7 +322,7 @@ const Header = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               </li>
-                  
+
               <li className="b">
 
                 <Link to={'/wishlist'} className="nav-item nav-link " >
@@ -313,20 +332,21 @@ const Header = () => {
                     </a>
                   </li>
                 </Link>
-                </li>
+              </li>
 
 
-                <li className="nav-item nav">
-                  <form action="#" class="hm-searchbox">
-                    {/* <select class="nice-select select-search-category">
+              <li className="nav-item nav">
+                <form action="#" class="hm-searchbox">
+                  {/* <select class="nice-select select-search-category">
                   </select> */}
-                    <input type="text" placeholder="Enter your search key ..."
-                      value={search} onChange={handleInputchange}
-                    />
-                    <Link to={`/search?q=${encodeURIComponent(search)}`} onChange={() => setparams({ q: search })}> <button class="li-btn" >        < i class="icon-search"></i></button></Link>
-                  </form>
-                </li>
-                {/* <li className="nav-item cta cta-colored"><a href="cart.html" className="nav-link"><span className="icon-shopping_cart" />[0]</a></li> */}
+                  <input type="text" placeholder="Enter your search key ..."
+                    value={search} onChange={handleInputchange}
+                  />
+                  <Link to={`/search?q=${encodeURIComponent(search)}`} onChange={() => setparams({ q: search })}> <button class="li-btn" >        < i class="icon-search"></i></button></Link>
+                </form>
+              </li>
+
+              {/* <li className="nav-item cta cta-colored"><a href="cart.html" className="nav-link"><span className="icon-shopping_cart" />[0]</a></li> */}
 
 
             </ul>
