@@ -53,25 +53,7 @@ const Login = () => {
            };
            
 
-        // const onSubmit = (e) => {
-        //     e.preventDefault();
-        //     fetch('https://vsmart.ajspire.com/api/user/login', {
-        //         method: 'POST',
-        //         body: JSON.stringify(formData),  // Convert formData to JSON string
-        //         headers: {
-        //             'Content-Type': 'application/json',  // Specify content type as JSON
-        //             // Include other headers if needed
-        //         },
-        //     })
-        //         .then((res) => res.json())
-        //         .then((data) => {
-        //             // Handle response data here
-        //             console.log(data);
-        //         })
-        //         .catch((error) => {
-        //             console.log("Error", error);
-        //         });
-        // };
+       
 
     
 
